@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include "trapezoidal.h"
+#include "timer.h"
 
 const int MAX_THREADS = 4;
 
 /* Global variable:  accessible to all threads */
 int thread_count;
+double start, stop, elapsed;
 
 void *trapezoidal_rule(void* rank) {
   long my_rank = (long) rank;  /* Use long in case of 64-bit system */
@@ -36,15 +38,19 @@ int main(int argc, char* argv[]) {
 
   thread_handles = malloc (thread_count*sizeof(pthread_t));
 
-  for (thread = 0; thread < thread_count; thread++)
-    pthread_create(&thread_handles[thread], NULL,
-        trapezoidal_rule, (void*) thread);
+  for (thread = 0; thread < thread_count; thread++){
+    GET_TIME(start);
+    pthread_create(&thread_handles[thread], NULL,trapezoidal_rule, (void*) thread);
+    GET_TIME(stop);
+    elapsed = stop - start;
+    printf("%f\n",elapsed);
+  }
 
   printf("Hello from the main thread\n");
 
-  for (thread = 0; thread < thread_count; thread++)
+  for (thread = 0; thread < thread_count; thread++){
     pthread_join(thread_handles[thread], NULL);
-
+  }
   free(thread_handles);
   return 0;
 }
