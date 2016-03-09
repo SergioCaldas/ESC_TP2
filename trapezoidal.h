@@ -1,4 +1,6 @@
 #ifndef _TRAP_
 #define _TRAP_
-  double trapezoidal(int a,int b, int c);
+  void *trap_busy(void* rank);
+  void *trap_mutex(void* rank);
+  void *trap_sem(void* rank);
 #endif
