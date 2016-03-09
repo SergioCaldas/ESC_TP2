@@ -11,7 +11,7 @@ int thread_count;
 void *trapezoidal_rule(void* rank) {
   long my_rank = (long) rank;  /* Use long in case of 64-bit system */
 
-  printf("Thread: %ld Resultado = %f\n", my_rank, trapezoidal(1,1000,10));
+  printf("Thread: %ld Resultado = %f\n", my_rank, trapezoidal(1,10000000,10));
 
   return NULL;
 }
