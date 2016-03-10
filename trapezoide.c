@@ -48,7 +48,6 @@ void *trap_mutex(void* rank) {
   pthread_mutex_lock(&mutex);
   total += my_int;
   pthread_mutex_unlock(&mutex);
-  printf("Resultado Intermédio: %.2f\n",total);
   return NULL;
 }
 
@@ -64,10 +63,8 @@ void *trap_busy(void* rank) {
   my_int = trap(local_a, local_b, local_n, h);
   
   while(flag != my_rank);
-  printf("Entrei\n");
   total += my_int;
   flag=(flag+1)%local_n;
-  printf("Resultado Intermédio: %.2f\n",total);
   return NULL;
 }
 
@@ -86,6 +83,5 @@ void *trap_sem(void* rank) {
   total += my_int;
   sem_post(&sem);
   sem_destroy(&sem);
-  printf("Resultado Intermédio: %.2f\n",total);
   return NULL;
 }

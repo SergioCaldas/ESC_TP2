@@ -32,8 +32,6 @@ int main(int argc, char* argv[]) {
   pthread_t* thread_handles;
   double tempos[thread_count];
 
-  printf("Hello from the main thread\n");
-
   thread_count = strtol(argv[1], NULL, 10);
   a = 1;
   b = 100;
@@ -45,23 +43,20 @@ int main(int argc, char* argv[]) {
   
   thread_handles = malloc (thread_count*sizeof(pthread_t));
 
+  GET_TIME(start);
   for (thread = 0; thread < thread_count; thread++){
-    GET_TIME(start);
     tempos[thread]=start;
     pthread_create(&thread_handles[thread], NULL, trap_mutex , (void*) thread);
-    printf("Criei Thread: %ld\n",thread);
   }
 
   for (thread = 0; thread < thread_count; thread++){
     pthread_join(thread_handles[thread], NULL);
-    GET_TIME(stop);
-    elapsed = stop - tempos[thread];
-    printf("Tempo Thread[%ld]: %f\n",thread,elapsed);
   }
-
+  GET_TIME(stop);
+  elapsed = stop - tempos[thread];
+  printf("%f,%.2f\n",elapsed,total);
+  
   free(thread_handles);
-  printf("Aproximação: %.2f\n",total);
-  printf("Bye from the main thread\n");
   return 0;
 }
 
