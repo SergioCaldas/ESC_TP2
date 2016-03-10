@@ -1,19 +1,18 @@
-all: busy mutex semaphore
+all: trap_busy trap_mutex trap_sem
 
-busy : busy.c
-	gcc-5 -Wall -o busy busy.c trapezoide.c -lpthread
 
-mutex : mutex.c
-	gcc-5 -Wall -o mutex mutex.c trapezoide.c -lpthread
+trap_busy : busy.c
+	gcc-5 -Wall -o trap_busy busy.c trapezoide.c -lpthread
 
-semaphore : semaphore.c
-	gcc-5 -Wall -o semaphore semaphore.c trapezoide.c -lpthread
+trap_mutex : mutex.c
+	gcc-5 -Wall -o trap_mutex mutex.c trapezoide.c -lpthread
+
+trap_sem : semaphore.c
+	gcc-5 -Wall -o trap_sem semaphore.c trapezoide.c -lpthread
 
 .PHONY: clean
 
 clean:
 	rm -f *.o
 	rm -f *.out
-	rm -f busy
-	rm -f mutex
-	rm -f semaphore
+	rm -f trap_*
