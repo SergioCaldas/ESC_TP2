@@ -1,16 +1,19 @@
-CC=gcc-5
-CFLAGS= -Wall -lpthread
-DEPS = trapezoide.h
-OBJ = pt_trap.o trapezoidal.o
+all: busy mutex semaphore
 
-%.o: %.c $(DEPS)
-		$(CC) -c -o $@ $< $(CFLAGS)
+busy : busy.c
+	gcc-5 -Wall -o busy busy.c trapezoide.c -lpthread
 
-pt_trap: $(OBJ)
-		gcc-5 -o $@ $^ $(CFLAGS)
+mutex : mutex.c
+	gcc-5 -Wall -o mutex mutex.c trapezoide.c -lpthread
+
+semaphore : semaphore.c
+	gcc-5 -Wall -o semaphore semaphore.c trapezoide.c -lpthread
 
 .PHONY: clean
 
 clean:
-		rm -f *.o
-		rm -f *.out
+	rm -f *.o
+	rm -f *.out
+	rm -f busy
+	rm -f mutex
+	rm -f semaphore
