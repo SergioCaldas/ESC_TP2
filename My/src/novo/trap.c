@@ -39,10 +39,10 @@ double function(double x);
 /*--------------------------------------------------------------------*/
 int main(int argc, char* argv[]) {
   
-  long thread;  /* Use long in case of a 64-bit system */
+  long thread_id;  /* Use long in case of a 64-bit system */
   pthread_t* thread_handles;
   char* prog_name = argv[0];
-  total = 0.0;
+  total = 0.0f;
 
   if (argc < 5) Usage(prog_name);
   thread_count = strtol(argv[1], NULL, 10);
@@ -66,17 +66,22 @@ int main(int argc, char* argv[]) {
 
   GET_TIME(start);
   printf("Cheguei\n");
-  for (thread = 0; thread < thread_count; thread++){
-    printf("Entrei Thread[%ld]\n",thread);
-    pthread_create(&thread_handles[thread], NULL, trap_thread , (void*) thread);
-    printf("Criei Thread[%ld]\n",thread);
+  for (thread_id = 0; thread_id < thread_count; thread_id++){
+    printf("Entrei Thread[%ld]\n",thread_id);
+    pthread_create(&thread_handles[thread_id], NULL, trap_thread , (void*) thread_id);
+    printf("Criei Thread[%ld]\n",thread_id);
   }
 
-  for (thread = 0; thread < thread_count; thread++){
-    printf("Estou preparado para sair Thread[%ld]\n",thread);
-    pthread_join(thread_handles[thread], NULL);
-    printf("Sai Thread[%ld]\n",thread);
+  for (thread_id = 0; thread_id < thread_count; thread_id++){
+    printf("Estou preparado para sair Thread[%ld]\n",thread_id);
+    pthread_join(thread_handles[thread_id], NULL);
+    printf("Sai Thread[%ld]\n",thread_id);
   }
+  
+  GET_TIME(stop);
+  elapsed = stop - start;
+  printf("%s,%ld,%.2f,%.2f,%d,%.2f,%.2f\n",prog_name,thread_id,a,b,n,elapsed*pow(10,3),total);
+  
   #ifdef D_SEMAPHORE
   sem_destroy(&sem);
   #endif
@@ -85,9 +90,6 @@ int main(int argc, char* argv[]) {
   pthread_mutex_destroy(&mutex);
   #endif
 
-  GET_TIME(stop);
-  elapsed = stop - start;
-  printf("%s,%ld,%.2f,%.2f,%d,%.2f,%.2f\n",prog_name,thread,a,b,n,elapsed*pow(10,3),total);
   
   free(thread_handles);
   return 0;
@@ -107,7 +109,7 @@ void *trap_thread(void* rank) {
   #ifdef D_BUSYWAITING
   while(flag != my_rank);
   total += my_integral;
-  flag=(flag+1)%local_n;
+  flag=(flag+1)%thread_count;
   #endif
 
   #ifdef D_MUTEX
