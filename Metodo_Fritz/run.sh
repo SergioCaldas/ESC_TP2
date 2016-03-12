@@ -1,7 +1,7 @@
 #!bin/bash
 
-max_threads=4
-max_sample=1
+max_threads=48
+max_sample=5
 num_threads=1
 
 a=1

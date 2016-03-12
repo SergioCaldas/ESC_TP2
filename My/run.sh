@@ -18,7 +18,7 @@ do
   ./pth_hello 1 >> CSV/pth_hello.csv
 done
 
-for ((n_threads=2; n_threads <= $max_thrads; n_threads+=2))
+for n_threads in 2 4 8 16 24 32 48
 do
   for ((i=0;i<5;i++))
   do
@@ -39,7 +39,7 @@ do
   ./trap_sem 1 $a $b $n >> CSV/trap_sem.csv
 done
 
-for ((n_threads=2; n_threads <= $max_threads; n_threads+=2))
+for n_threads in 2 4 8 16 24 32 48
 do
   for ((i=0;i<5;i++))
   do

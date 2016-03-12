@@ -19,3 +19,4 @@ clean:
 	rm -f *.out
 	rm -f trap_*
 	rm -rf CSV/
+	rm -f pth_hello
