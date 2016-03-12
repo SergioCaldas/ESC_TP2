@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
   GET_TIME(start);
   for (thread = 0; thread < thread_count; thread++){
     tempos[thread]=start;
-    pthread_create(&thread_handles[thread], NULL, trap_mutex , (void*) thread);
+    pthread_create(&thread_handles[thread], NULL, trap_sem , (void*) thread);
   }
 
   for (thread = 0; thread < thread_count; thread++){
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
   }
   GET_TIME(stop);
   elapsed = stop - tempos[thread];
-  printf("%f\n",elapsed);
+  printf("%ld,%f\n",thread,elapsed);
   
   free(thread_handles);
   return 0;

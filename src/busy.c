@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
   }
   GET_TIME(stop);
   elapsed = stop - tempos[thread];
-  printf("%f,\n",elapsed);
+  printf("%ld,%f\n",thread,elapsed);
   
   free(thread_handles);
   return 0;
