@@ -4,7 +4,7 @@
 #include "timer.h"
 #include <math.h>
 
-const int MAX_THREADS = 4;
+const int MAX_THREADS = 48;
 
 /* Global variable:  accessible to all threads */
 int thread_count;  
