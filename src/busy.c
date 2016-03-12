@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
   }
   GET_TIME(stop);
   elapsed = stop - start;
-  printf("%s,%ld,%.2f,%.2f,%d,%.2f,%.2f\n",prog_name,thread,a,b,n,elapsed*pow(10,3),total);
+  printf("%s,%ld,%.2f,%.2f,%d,%.2f,%.2f\n",prog_name,thread,a,b,n,elapsed,total);
   
   free(thread_handles);
   return 0;
