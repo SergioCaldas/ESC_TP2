@@ -29,7 +29,7 @@
 module purge
 module load gnu/4.9.0
 
-cd CPD/ESC_TP2/My/src
+cd CPD/ESC_TP2/src
 
 a=1
 b=100

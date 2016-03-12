@@ -33,7 +33,6 @@ int main(int argc, char* argv[]) {
   
   long thread;  /* Use long in case of a 64-bit system */
   pthread_t* thread_handles;
-  double tempos[thread_count];
   char* prog_name = argv[0];
   total = 0.0;
 
