@@ -6,7 +6,7 @@
 #include "timer.h"
 #include <semaphore.h>
 
-const int MAX_THREADS = 4;
+const int MAX_THREADS = 48;
 
 /* Global variable:  accessible to all threads */
 int thread_count;
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
   GET_TIME(start);
   for (thread = 0; thread < thread_count; thread++){
     tempos[thread]=start;
-    pthread_create(&thread_handles[thread], NULL, trap_mutex , (void*) thread);
+    pthread_create(&thread_handles[thread], NULL, trap_busy , (void*) thread);
   }
 
   for (thread = 0; thread < thread_count; thread++){
