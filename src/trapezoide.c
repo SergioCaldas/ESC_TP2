@@ -11,8 +11,7 @@ long flag = 0;
 sem_t sem;
 extern int thread_count;
 
-double f(double x) {
-
+double f(double x){
   double return_val;
   return_val = x*x;
 
