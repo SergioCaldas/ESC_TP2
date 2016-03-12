@@ -9,6 +9,7 @@ double  total;
 pthread_mutex_t   mutex;
 long flag = 0;
 sem_t sem;
+extern int thread_count;
 
 double f(double x) {
 
@@ -64,7 +65,7 @@ void *trap_busy(void* rank) {
   
   while(flag != my_rank);
   total += my_int;
-  flag=(flag+1)%local_n;
+  flag=(flag+1)%thread_count;
   return NULL;
 }
 

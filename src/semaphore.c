@@ -17,7 +17,7 @@ int n, local_n;
 double a, b, h;
 extern double total;
 
-void* trap_mutex(void* rank);
+void* trap_sem(void* rank);
 
 /*-------------------------------------------------------------------*/
 void Usage(char* prog_name) {
@@ -28,12 +28,12 @@ void Usage(char* prog_name) {
 
 }
 
+
 /*--------------------------------------------------------------------*/
 int main(int argc, char* argv[]) {
   
   long thread;  /* Use long in case of a 64-bit system */
   pthread_t* thread_handles;
-  double tempos[thread_count];
   char* prog_name = argv[0];
 
   if (argc < 5) Usage(prog_name);
@@ -50,15 +50,14 @@ int main(int argc, char* argv[]) {
 
   GET_TIME(start);
   for (thread = 0; thread < thread_count; thread++){
-    tempos[thread]=start;
-    pthread_create(&thread_handles[thread], NULL, trap_mutex , (void*) thread);
+    pthread_create(&thread_handles[thread], NULL, trap_sem , (void*) thread);
   }
 
   for (thread = 0; thread < thread_count; thread++){
     pthread_join(thread_handles[thread], NULL);
   }
   GET_TIME(stop);
-  elapsed = stop - tempos[thread];
+  elapsed = stop - start;
   printf("%s,%ld,%.2f,%.2f,%d,%.2f,%.2f\n",prog_name,thread,a,b,n,elapsed*pow(10,-6),total);
   
   free(thread_handles);
