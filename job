@@ -25,7 +25,7 @@
 #          Specify the number of nodes requested and the
 #          number of processors per node. 
 
-#PBS -l nodes=1:ppn=24
+#PBS -l nodes=1:r431:ppn=24
 module purge
 module load gnu/4.9.0
 
@@ -33,9 +33,6 @@ cd CPD/ESC/ESC_TP2/src
 
 a=1
 b=100
-n=40
-
-max_threads=48
 
 mkdir -p CSV
 
