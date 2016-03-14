@@ -31,8 +31,8 @@ module load gnu/4.9.0
 
 cd CPD/ESC/ESC_TP2/src
 
-a=1
-b=100
+a=0
+b=1024
 
 mkdir -p CSV
 

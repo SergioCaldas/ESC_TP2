@@ -3,7 +3,6 @@
 a=0
 b=1024
 
-max_threads=48
 
 cd src
 
