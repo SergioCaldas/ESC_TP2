@@ -7,7 +7,7 @@
 #include <semaphore.h>
 #include <math.h>
 
-const int MAX_THREADS = 48;
+const int MAX_THREADS = 64;
 
 /* Global variable:  accessible to all threads */
 int thread_count;

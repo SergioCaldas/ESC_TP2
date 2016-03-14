@@ -47,7 +47,7 @@ do
   ./pth_hello 1 >> CSV/pth_hello.csv
 done
 
-for n_threads in 2 4 8 16 24 32 48
+for n_threads in 2 4 8 16 24 32 48 64
 do
   for ((i=0;i<5;i++))
   do
@@ -63,18 +63,18 @@ echo "Prog_name,Nº Threads,a,b,n,Time (MiliSecounds),Result" >> CSV/trap_sem.cs
 
 for ((i=0;i<5;i++))
 do
-  ./trap_busy 1 $a $b $n >> CSV/trap_busy.csv
-  ./trap_mutex 1 $a $b $n >> CSV/trap_mutex.csv
-  ./trap_sem 1 $a $b $n >> CSV/trap_sem.csv
+  ./trap_busy 1 $a $b 1 >> CSV/trap_busy.csv
+  ./trap_mutex 1 $a $b 1 >> CSV/trap_mutex.csv
+  ./trap_sem 1 $a $b 1 >> CSV/trap_sem.csv
 done
 
-for n_threads in 2 4 8 16 24 32 48
+for n_threads in 2 4 8 16 24 32 48 64
 do
   for ((i=0;i<5;i++))
   do
-    ./trap_busy $n_threads $a $b $n >> CSV/trap_busy.csv
-    ./trap_mutex $n_threads $a $b $n >> CSV/trap_mutex.csv
-    ./trap_sem $n_threads $a $b $n >> CSV/trap_sem.csv
+    ./trap_busy $n_threads $a $b $n_threads >> CSV/trap_busy.csv
+    ./trap_mutex $n_threads $a $b $n_threads >> CSV/trap_mutex.csv
+    ./trap_sem $n_threads $a $b $n_threads >> CSV/trap_sem.csv
   done
 done
 
