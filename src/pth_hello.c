@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
   
   GET_TIME(stop);
   elapsed = stop-start;
-  printf("%d,%f,%f\n",thread_count,(float)(elapsed/thread_count),elapsed);
+  printf("%d,%.9f,%.9f\n",thread_count,(float)(elapsed/thread_count),elapsed);
   
   free(thread_handles);
   return 0;
