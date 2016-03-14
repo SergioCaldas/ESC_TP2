@@ -25,7 +25,7 @@
 #          Specify the number of nodes requested and the
 #          number of processors per node. 
 
-#PBS -l nodes=1:r431:ppn=24
+#PBS -l nodes=1:ppn=24
 module purge
 module load gnu/4.9.0
 
@@ -47,7 +47,7 @@ do
   ./pth_hello 1 >> CSV/pth_hello.csv
 done
 
-for n_threads in 2 4 8 16 24 32 48 64
+for n_threads in 2 4 8 16 32 64
 do
   for ((i=0;i<5;i++))
   do
@@ -68,7 +68,7 @@ do
   ./trap_sem 1 $a $b 1 >> CSV/trap_sem.csv
 done
 
-for n_threads in 2 4 8 16 24 32 48 64
+for n_threads in 2 4 8 16 32 64
 do
   for ((i=0;i<5;i++))
   do
