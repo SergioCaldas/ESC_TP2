@@ -1,16 +1,16 @@
 all: pth_hello trap_busy trap_mutex trap_sem
 
 pth_hello: pth_hello.c
-	gcc -Wall -o pth_hello pth_hello.c -lpthread
+	gcc-5 -Wall -o pth_hello pth_hello.c -lpthread
 
 trap_busy : busy.c
-	gcc -Wall -o trap_busy busy.c trapezoide.c -lpthread
+	gcc-5 -Wall -o trap_busy busy.c trapezoide.c -lpthread
 
 trap_mutex : mutex.c
-	gcc -Wall -o trap_mutex mutex.c trapezoide.c -lpthread
+	gcc-5 -Wall -o trap_mutex mutex.c trapezoide.c -lpthread
 
 trap_sem : semaphore.c
-	gcc -Wall -o trap_sem semaphore.c trapezoide.c -lpthread
+	gcc-5 -Wall -o trap_sem semaphore.c trapezoide.c -lpthread
 
 .PHONY: clean
 
